@@ -197,8 +197,11 @@ if __name__ == "__main__":
     result = run()
 
     if result is not False:
-        print(result)
+        if type(result) == str:
+            print(result)
+            exit()
+
         # Checking that these results need to be stored in a json file
-        action = result['action']
+        action = result.get('action', None)
         if config['save_json'][action]:
             save_as_json(result)
